@@ -1,0 +1,57 @@
+syntax = "proto3";
+
+package dmicrog;
+
+option go_package = "proto;dmicrog";
+
+import "google/protobuf/timestamp.proto";
+
+service Dmicrog {
+	rpc Call(Request) returns (Response) {}
+	rpc Stream(StreamingRequest) returns (stream StreamingResponse) {}
+}
+
+message AttrValue {
+    string attr = 1;
+    string val = 2;
+    enum AttrType {
+        STRING = 0;
+        INT = 1;
+        FLOAT = 2;
+        OBJECT = 3;
+    }
+    AttrType typ = 3;
+}
+
+message EventLink {
+    string eventID = 1;
+	string eventType = 2;
+    string linkType = 3;
+    repeated AttrValue attrs = 4;
+}
+
+message EventMessage {
+    string id = 1;
+    string typ = 2;
+    google.protobuf.Timestamp timestamp = 3;
+    repeated AttrValue attrs = 4;
+    repeated EventLink links = 5;
+}
+
+message Request {
+	EventMessage event = 1;
+}
+
+message Response {
+	bool success = 1;
+    string message = 2;
+}
+
+message StreamingRequest {
+	string typ = 1;
+}
+
+message StreamingResponse {
+	EventMessage event = 1;
+}
+
