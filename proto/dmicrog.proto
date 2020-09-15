@@ -7,8 +7,8 @@ option go_package = "proto;dmicrog";
 import "google/protobuf/timestamp.proto";
 
 service Dmicrog {
-	rpc Call(Request) returns (Response) {}
-	rpc Stream(StreamingRequest) returns (stream StreamingResponse) {}
+    rpc Call(Request) returns (Response) {}
+    rpc Stream(StreamingRequest) returns (stream StreamingResponse) {}
 }
 
 message AttrValue {
@@ -25,7 +25,7 @@ message AttrValue {
 
 message EventLink {
     string eventID = 1;
-	string eventType = 2;
+    string eventType = 2;
     string linkType = 3;
     repeated AttrValue attrs = 4;
 }
@@ -39,19 +39,19 @@ message EventMessage {
 }
 
 message Request {
-	EventMessage event = 1;
+    EventMessage event = 1;
 }
 
 message Response {
-	bool success = 1;
+    bool success = 1;
     string message = 2;
 }
 
 message StreamingRequest {
-	string typ = 1;
+    string typ = 1;
 }
 
 message StreamingResponse {
-	EventMessage event = 1;
+    EventMessage event = 1;
 }
 

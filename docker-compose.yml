@@ -6,14 +6,24 @@ services:
       context: ./
       dockerfile: Dockerfile
     environment:
+      MICRO_SERVER_ADDRESS: ":9099"
       MICRO_REGISTRY: consul
       MICRO_REGISTRY_ADDRESS: consul:8500
+      MICRO_BROKER: kafka
+      MICRO_BROKER_ADDRESS: kafka:9092
+      MICRO_LOG_LEVEL: debug
   consul:
     image: consul:1.8
     expose:
     - "8500"
     ports:
     - "8500:8500"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8500"]
+      interval: 5s
+      timeout: 5s
+      retries: 3
+    hostname: "consul"
   zookeeper:
     image: wurstmeister/zookeeper:3.4.6
     ports:
@@ -31,4 +41,3 @@ services:
       KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
     hostname: "kafka"
-

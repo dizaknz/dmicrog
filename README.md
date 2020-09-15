@@ -1,6 +1,6 @@
 # Dmicrog Service
 
-This is a [go-micro](github.com/micro/go-micro) RPC service
+Event RPC service using [go-micro](https://github.com/micro/go-micro)
 
 ## Description
 

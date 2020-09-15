@@ -2,6 +2,7 @@ package main
 
 import (
 	"dmicrog/handler"
+	dmicrog "dmicrog/proto"
 
 	"github.com/micro/go-micro/v2"
 	log "github.com/micro/go-micro/v2/logger"
@@ -23,7 +24,10 @@ func main() {
 		micro.Registry(reg),
 		micro.Broker(broker),
 	)
-	srv.Server().NewHandler(handler.NewHandler(broker))
+	dmicrog.RegisterDmicrogHandler(
+		srv.Server(),
+		handler.NewHandler(broker),
+	)
 	srv.Init()
 	if err := srv.Run(); err != nil {
 		log.Fatal(err)
