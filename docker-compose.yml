@@ -12,6 +12,13 @@ services:
       MICRO_BROKER: kafka
       MICRO_BROKER_ADDRESS: kafka:9092
       MICRO_LOG_LEVEL: debug
+    expose:
+    - "9099"
+    ports:
+    - "9099:9099"
+    depends_on:
+    - consul
+    - kafka
   consul:
     image: consul:1.6
     expose:
