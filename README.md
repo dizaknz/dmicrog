@@ -4,9 +4,7 @@ Event RPC service using [go-micro](https://github.com/micro/go-micro)
 
 ## Description
 
-Demo event RPC service - WIP using default pub/sub configuration.
-
-Skeleton project generated with `micro new`
+Demo event RPC service.
 
 ## Quick start
 
