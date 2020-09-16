@@ -49,3 +49,13 @@ Run the service
 ```
 ./dmicrog
 ```
+
+## Demo
+
+[demo](cmd/demo/main.go)
+
+```
+make up
+make demo
+make down
+```

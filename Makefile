@@ -34,3 +34,9 @@ up: alpine-build
 .PHONY: down
 down:
 	docker-compose down -v
+
+.PHONY: demo
+demo:
+	go build -o demo cmd/demo/*.go
+	./demo
+
